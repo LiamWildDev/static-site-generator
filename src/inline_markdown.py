@@ -92,3 +92,11 @@ def extract_markdown_images(text):
 
 def extract_markdown_links(text):
     return re.findall(r"(?<!!)\[([^\[\]]*)\]\(([^\(\)]*)\)", text)
+
+def extract_title(markdown):
+    header_pattern = r"#.*"
+    md_header = re.match(header_pattern, markdown)
+    if md_header == None:
+        raise Exception("Markdown title does not start with '#'")
+    header = md_header.string.strip("# ")
+    return header
